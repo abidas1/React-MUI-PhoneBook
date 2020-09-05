@@ -31,7 +31,6 @@ const useStyles = makeStyles({
   },
   ButtonStyle: {
     minWidth: '8rem',
-    // minHeight: '3.5rem',
     marginBottom: '.5rem'
   }
 });
@@ -42,6 +41,7 @@ const ContactForm = (props) => {
     id: uuidv4(),
     name: '',
     phoneNumber: '',
+    favorite: false
   });
   const classes = useStyles();
 
@@ -58,7 +58,7 @@ const ContactForm = (props) => {
     contacts.push(contactInfo);
     contacts.sort((a, b) => a.name.localeCompare(b.name));
     setContacts([...contacts]);
-    setContactInfo({ id: uuidv4(), name: '', phoneNumber: '' });
+    setContactInfo({ id: uuidv4(), name: '', phoneNumber: '', favorite: false });
   };
 
   return (
