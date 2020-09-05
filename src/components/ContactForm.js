@@ -3,12 +3,12 @@ import {
   Card,
   CardHeader,
   CardContent,
-  TextField,
   Button,
   makeStyles,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { v4 as uuidv4 } from 'uuid';
+import MaskedInput from 'react-text-mask'
 
 const useStyles = makeStyles({
   CardStyle: {
@@ -22,11 +22,17 @@ const useStyles = makeStyles({
   },
   FormStyle: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    flexWrap: 'wrap'
+  },
+  TextFieldStyle: {
+    minWidth: '35%',
+    marginBottom: '.5rem'
   },
   ButtonStyle: {
     minWidth: '8rem',
-    minHeight: '3.5rem'
+    // minHeight: '3.5rem',
+    marginBottom: '.5rem'
   }
 });
 
@@ -60,22 +66,24 @@ const ContactForm = (props) => {
       <CardHeader title='Add New Contact' className={classes.CardHeaderStyle}/>
       <CardContent>
         <form onSubmit={handleSubmit} className={classes.FormStyle}>
-          <TextField
+          <input
             id='name'
-            label='Name'
-            variant='outlined'
+            placeholder='Name'
             value={contactInfo.name}
-            focused
+            autoFocus
             required
             onChange={handleChange}
+            className={classes.TextFieldStyle}
           />
-          <TextField
-            id='phoneNumber'
-            label='Phone Number'
-            variant='outlined'
+          <MaskedInput
+            id="phoneNumber"
+            mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            className={classes.TextFieldStyle}
+            placeholder="Phone Number"
+            guide={false}
             value={contactInfo.phoneNumber}
-            required
             onChange={handleChange}
+            required
           />
           <Button
             variant='contained'

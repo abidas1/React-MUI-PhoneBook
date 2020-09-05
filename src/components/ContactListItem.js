@@ -14,6 +14,9 @@ const useStyles = makeStyles({
     alignItems: 'center',
     width: '30%',
   },
+  PhoneNumberStyle: {
+    minWidth: '7rem'
+  },
 });
 
 const ContactListItem = (props) => {
@@ -26,7 +29,7 @@ const ContactListItem = (props) => {
         <Person fontSize='large' /> <Typography variant='h5'>{contact.name}</Typography>
       </div>
       <div className={classes.CardDiv}>
-        <Phone fontSize='large'/> <Typography>{contact.phoneNumber}</Typography>
+        <Phone fontSize='large'/> <Typography className={classes.PhoneNumberStyle}>{contact.phoneNumber}</Typography>
       </div>
       <IconButton onClick={() => removeContact(contact.id)}>
         <Delete />

@@ -1,17 +1,30 @@
-import React, { useState } from "react";
-import "./App.css";
-import ContactForm from "./components/ContactForm";
-import ContactList from "./components/ContactList";
-import Typography from "@material-ui/core/Typography";
-import ContactsIcon from "@material-ui/icons/Contacts";
+import React, { useState } from 'react';
+import ContactForm from './components/ContactForm';
+import ContactList from './components/ContactList';
+import { Typography, makeStyles } from '@material-ui/core';
+import ContactsIcon from '@material-ui/icons/Contacts';
+
+const useStyles = makeStyles({
+  AppClass: {
+    margin: '0.625rem 1.25rem 0.625rem 1.25rem'
+  },
+  HeaderClass: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  ContactIconClass:{
+    fontSize: '2.5rem'
+  }
+});
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
+  const classes = useStyles();
 
   return (
-    <div className="App">
-      <Typography variant="h3">
-        <ContactsIcon style={{ fontSize: "2.5rem" }} /> My UT Phone Book
+    <div className={classes.AppClass}>
+      <Typography className={classes.HeaderClass} variant='h3'>
+        <ContactsIcon className={classes.ContactIconClass}/> My UT Phone Book
       </Typography>
       <ContactForm contacts={contacts} setContacts={setContacts} />
       <ContactList contacts={contacts} setContacts={setContacts} />
